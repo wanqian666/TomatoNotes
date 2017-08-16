@@ -37,16 +37,16 @@
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Finish = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.AddAlarm = new System.Windows.Forms.DataGridViewImageColumn();
+            this.AddDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -114,9 +114,9 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.ColumnHeadersVisible = false;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column4,
+            this.AddAlarm,
+            this.AddDetail,
+            this.AddTime,
             this.xinjian});
             this.dataGridView2.Location = new System.Drawing.Point(-41, 227);
             this.dataGridView2.Name = "dataGridView2";
@@ -126,32 +126,6 @@
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column3";
-            this.Column4.Name = "Column4";
-            // 
-            // xinjian
-            // 
-            this.xinjian.HeaderText = "Column4";
-            this.xinjian.Name = "xinjian";
-            this.xinjian.ReadOnly = true;
-            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // timer1
             // 
@@ -195,7 +169,33 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // Form1
+            // AddAlarm
+            // 
+            this.AddAlarm.HeaderText = "Column1";
+            this.AddAlarm.Name = "AddAlarm";
+            this.AddAlarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // AddDetail
+            // 
+            this.AddDetail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AddDetail.HeaderText = "Column2";
+            this.AddDetail.Name = "AddDetail";
+            // 
+            // AddTime
+            // 
+            this.AddTime.HeaderText = "Column3";
+            this.AddTime.Name = "AddTime";
+            // 
+            // xinjian
+            // 
+            this.xinjian.HeaderText = "Column4";
+            this.xinjian.Name = "xinjian";
+            this.xinjian.ReadOnly = true;
+            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -204,7 +204,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -229,9 +229,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Finish;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewImageColumn AddAlarm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddDetail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddTime;
         private System.Windows.Forms.DataGridViewButtonColumn xinjian;
     }
 }

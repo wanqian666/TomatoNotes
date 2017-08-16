@@ -12,18 +12,16 @@ namespace Notes
     class ToDoItemFile
     {
         private string _path = "D://Note.xml";
-        //public Item[] _items;
        
         public Item[] GetXml()
         {
+            if (!File.Exists(_path))//若文件夹不存在则新建文件夹   
+            {
+                File.CreateText(_path); //新建文件夹   
+            }  
             //读取Xml文件数据
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(_path);
-            //if (!File.Exists(_path))
-            //{
-            //    File.Create(_path);//如果路径下没有文件则创建文件
-            //}
-
             XmlNodeList xmlNodeList = xmlDocument.SelectSingleNode("Notes").ChildNodes;
             //dataGridView1.Rows.Clear();
             int count = xmlNodeList.Count;

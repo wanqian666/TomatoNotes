@@ -68,7 +68,16 @@ namespace Notes
             //        }
             //    }
             //}
+            if (items == null)
+            {
+                items[0]._isAlarm = false;
+                items[0]._detail = null;
+                items[0]._id = 0;
+                items[0]._isFinish = false;
+                items[0]._endTime = Convert.ToDateTime(2000/01/01);
+            }
             return items;
         }
+
     }
 }

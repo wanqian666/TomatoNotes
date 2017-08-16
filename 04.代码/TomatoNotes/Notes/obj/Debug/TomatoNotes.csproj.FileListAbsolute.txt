@@ -1,0 +1,9 @@
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\bin\Debug\Notes.exe.config
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\Notes.exe
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\Notes.pdb
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\bin\Debug\Notes.exe
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\bin\Debug\Notes.pdb
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\TomatoNotes.csprojResolveAssemblyReference.cache
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\Notes.FormMain.resources
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\Notes.Properties.Resources.resources
+D:\GitHub\TomatoNotes\04.代码\TomatoNotes\Notes\obj\Debug\TomatoNotes.csproj.GenerateResource.Cache
