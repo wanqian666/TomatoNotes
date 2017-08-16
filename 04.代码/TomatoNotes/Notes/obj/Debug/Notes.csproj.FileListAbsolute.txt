@@ -1,0 +1,21 @@
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\bin\Debug\Notes.exe.config
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\bin\Debug\Notes.exe
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\bin\Debug\Notes.pdb
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.csprojResolveAssemblyReference.cache
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.Form1.resources
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.Properties.Resources.resources
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.csproj.GenerateResource.Cache
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.exe
+c:\users\wanqian\documents\visual studio 2012\Projects\Notes\Notes\obj\Debug\Notes.pdb
+C:\Users\Hyron\Desktop\Notes\Notes\bin\Debug\Notes.exe.config
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.exe
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.pdb
+C:\Users\Hyron\Desktop\Notes\Notes\bin\Debug\Notes.exe
+C:\Users\Hyron\Desktop\Notes\Notes\bin\Debug\Notes.pdb
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.csprojResolveAssemblyReference.cache
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.Form1.resources
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.Properties.Resources.resources
+C:\Users\Hyron\Desktop\Notes\Notes\obj\Debug\Notes.csproj.GenerateResource.Cache
+D:\TomatoNotes\Notes\Notes\bin\Debug\Notes.exe.config
+D:\TomatoNotes\Notes\Notes\obj\Debug\Notes.exe
+D:\TomatoNotes\Notes\Notes\obj\Debug\Notes.pdb
