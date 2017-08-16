@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Xml;
 namespace Notes
 {
-    public partial class FormMain : Form
+    public partial  class FormMain : Form
     {
         ToDoItemFile itemFile = new ToDoItemFile();
         ToDoItemOperation doItem = new ToDoItemOperation();
