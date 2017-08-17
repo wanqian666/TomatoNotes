@@ -17,7 +17,38 @@ namespace Notes
         {
             if (!File.Exists(_path))//若文件夹不存在则新建文件夹   
             {
-                File.CreateText(_path); //新建文件夹   
+                XmlDocument doc = new XmlDocument();
+                XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                doc.AppendChild(dec);
+                //创建一个根节点（一级）
+                XmlElement root = doc.CreateElement("Notes");
+                doc.AppendChild(root);
+                //创建节点（二级）
+                //XmlNode node = doc.CreateElement("Note");
+                ////创建节点（三级）
+                //XmlElement element1 = doc.CreateElement("alarm");
+                //element1.InnerText = "False";
+                //node.AppendChild(element1);
+
+                //XmlElement element2 = doc.CreateElement("detail");
+                //element2.InnerText = "";
+                //node.AppendChild(element2);
+
+                //XmlElement element3 = doc.CreateElement("endtime");
+                //element3.InnerText = "2000/01/01";
+                //node.AppendChild(element3);
+
+                //XmlElement element4 = doc.CreateElement("finish");
+                //element4.InnerText = "False";
+                //node.AppendChild(element4);
+
+                //XmlElement element5 = doc.CreateElement("id");
+                //element5.InnerText = "0";
+                //node.AppendChild(element5);
+
+                //root.AppendChild(node);
+                doc.Save(@_path);
+                Console.Write(doc.OuterXml);
             }  
             //读取Xml文件数据
             XmlDocument xmlDocument = new XmlDocument();

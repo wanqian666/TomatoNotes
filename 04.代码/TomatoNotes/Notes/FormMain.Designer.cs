@@ -37,18 +37,21 @@
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Finish = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.AddAlarm = new System.Windows.Forms.DataGridViewImageColumn();
+            this.AddDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.AddAlarm = new System.Windows.Forms.DataGridViewImageColumn();
-            this.AddDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -74,6 +77,7 @@
             this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
             this.dataGridView1.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseMove);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // Num
@@ -127,10 +131,36 @@
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
+            // AddAlarm
+            // 
+            this.AddAlarm.HeaderText = "Column1";
+            this.AddAlarm.Name = "AddAlarm";
+            this.AddAlarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // AddDetail
+            // 
+            this.AddDetail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AddDetail.HeaderText = "Column2";
+            this.AddDetail.Name = "AddDetail";
+            // 
+            // AddTime
+            // 
+            this.AddTime.HeaderText = "Column3";
+            this.AddTime.Name = "AddTime";
+            // 
+            // xinjian
+            // 
+            this.xinjian.HeaderText = "Column4";
+            this.xinjian.Name = "xinjian";
+            this.xinjian.ReadOnly = true;
+            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // dateTimePicker1
@@ -164,36 +194,25 @@
             // notifyIcon1
             // 
             this.notifyIcon1.BalloonTipTitle = "时间提醒";
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "Tomato";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // AddAlarm
+            // contextMenuStrip1
             // 
-            this.AddAlarm.HeaderText = "Column1";
-            this.AddAlarm.Name = "AddAlarm";
-            this.AddAlarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AddAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.退出ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
             // 
-            // AddDetail
+            // 退出ToolStripMenuItem
             // 
-            this.AddDetail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AddDetail.HeaderText = "Column2";
-            this.AddDetail.Name = "AddDetail";
-            // 
-            // AddTime
-            // 
-            this.AddTime.HeaderText = "Column3";
-            this.AddTime.Name = "AddTime";
-            // 
-            // xinjian
-            // 
-            this.xinjian.HeaderText = "Column4";
-            this.xinjian.Name = "xinjian";
-            this.xinjian.ReadOnly = true;
-            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -209,6 +228,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +253,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AddDetail;
         private System.Windows.Forms.DataGridViewTextBoxColumn AddTime;
         private System.Windows.Forms.DataGridViewButtonColumn xinjian;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
     }
 }
 

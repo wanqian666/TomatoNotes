@@ -59,34 +59,47 @@ namespace Notes
                         break;
                 }
             }
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.Manual;
+            //获取当前工作区宽度和高度（工作区不包含状态栏）
+            int ScreenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+            int ScreenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+            this.Width = 520;
+            this.Height = 249;
+            //计算窗体显示的坐标值，可以根据需要微调几个像素
+            int x = ScreenWidth - this.Width - 5;
+            int y = ScreenHeight - this.Height - 5;
+
+            this.Location = (Point)new Size(x, y); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Position[] _position = doItem.SearchItem();
-            
             Item[] _items = doItem.SearchItem();
             _atCount = _items.Length;
-            //intCount = doItem.intCounts;
+            int j = 0;
             for (int index = 0; index < _atCount; index++)
             {
                 dataGridView1.Rows.Add();
-                if (_items[index]._isAlarm == true)
+               
+                for (int i = j; i < _atCount; i++)
                 {
-                    dataGridView1.Rows[index].Cells[intAlarm].Value = imageList1.Images[0];
-                }
-                else
-                {
-                    dataGridView1.Rows[index].Cells[intAlarm].Value = null;
-                }
-                for (int i = 0; i < _atCount; i++)
-                {
+                    if (_items[index]._isAlarm == true)
+                    {
+                        dataGridView1.Rows[index].Cells[intAlarm].Value = imageList1.Images[0];
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[index].Cells[intAlarm].Value = null;
+                    }
                     if (!_items[i]._isFinish)
                     {
-                        dataGridView1.Rows[index].Cells[intDetail].Value = _items[index]._detail;
-                        dataGridView1.Rows[index].Cells[intEndTime].Value = _items[index]._endTime;
-                        dataGridView1.Rows[index].Cells[intFinish].Value = _items[index]._isFinish;
+                        dataGridView1.Rows[index].Cells[intDetail].Value = _items[i]._detail;
+                        dataGridView1.Rows[index].Cells[intEndTime].Value = _items[i]._endTime;
+                        dataGridView1.Rows[index].Cells[intFinish].Value = _items[i]._isFinish;
+                        break;
                     }
+                    j++;
                 }
             }
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd HH:mm:ss";
@@ -95,6 +108,10 @@ namespace Notes
             dataGridView1.Columns[intAlarm].DefaultCellStyle.NullValue = null;
             dataGridView2.Columns[intNum].DefaultCellStyle.NullValue = null;
             dataGridView2.Rows[0].Cells[0].Value = null;
+            if (_atCount < 9)
+            {
+                this.dataGridView1.Rows.Add(9 - _atCount);
+            }
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -131,53 +148,57 @@ namespace Notes
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                
-                    DateTime time1 = Convert.ToDateTime(dataGridView1.Rows[i].Cells[intEndTime].Value.ToString());
-                    DateTime time2 = Convert.ToDateTime(DateTime.Now.ToString());
-                    TimeSpan ts = new TimeSpan();
-                    TimeSpan tp = new TimeSpan();
-                    ts = time1 - time2;
-                    tp = time2 - time1;
-                    if (!doItem.items[i]._isFinish)
-                    {
-                        if (tp.TotalMinutes > 0)
-                        {
-                            this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 153, 255);
-                        }
-                    }
-                    else
-                    {
-                        if (tp.TotalMinutes > 0)
-                        {
-                            this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(146, 208, 80);
-                        }
-                        
-                    }
-                if (dataGridView1.Rows[i].Cells[intAlarm].Value != null)
+                for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    //string time = DateTime.Parse(ts.ToString()).ToString("HH:mm:ss");
-                    if (ts.TotalSeconds == 900)
+                    if (dataGridView1.Rows[i].Cells[intEndTime].Value != null)
                     {
-                        this.notifyIcon1.ShowBalloonTip(1000, "时间提醒", "事件：" + dataGridView1.Rows[i].Cells[intDetail].Value + ",距离开始还剩30分钟。", ToolTipIcon.Info);
-                    }
-                    if (ts.TotalSeconds == 0)
-                    {
-                        this.notifyIcon1.ShowBalloonTip(1000, "时间提醒", "事件：" + dataGridView1.Rows[i].Cells[intDetail].Value + ",时间到！！！。", ToolTipIcon.Info);
+                        DateTime time1 = Convert.ToDateTime(dataGridView1.Rows[i].Cells[intEndTime].Value.ToString());
+                        DateTime time2 = Convert.ToDateTime(DateTime.Now.ToString());
+                        TimeSpan ts = new TimeSpan();
+                        TimeSpan tp = new TimeSpan();
+                        ts = time1 - time2;
+                        tp = time2 - time1;
+                        if (!doItem.items[i]._isFinish)
+                        {
+                            if (tp.TotalMinutes > 0)
+                            {
+                                this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 153, 255);
+                            }
+                        }
+                        else
+                        {
+                            if (tp.TotalMinutes > 0)
+                            {
+                                this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(146, 208, 80);
+                            }
+
+                        }
+                        if (dataGridView1.Rows[i].Cells[intAlarm].Value != null)
+                        {
+                            if (ts.TotalSeconds == 900)
+                            {
+                                this.notifyIcon1.ShowBalloonTip(1000, "时间提醒", "事件：" + dataGridView1.Rows[i].Cells[intDetail].Value + ",距离开始还剩30分钟。", ToolTipIcon.Info);
+                            }
+                            if (ts.TotalSeconds == 0)
+                            {
+                                this.notifyIcon1.ShowBalloonTip(1000, "时间提醒", "事件：" + dataGridView1.Rows[i].Cells[intDetail].Value + ",时间到！！！。", ToolTipIcon.Info);
+                            }
+                        }
                     }
                 }
+            }
+            catch
+            { 
+                
             }
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //intCount = new int[_atCount];
             Item valueChange = new Item();
-            //Item[] _items = doItem.SearchItem();
-            //_atCount = _items.Length;
-            //intCount = doItem.intCounts;
-            if (e.ColumnIndex == 4 && e.RowIndex != -1)
+            if (e.ColumnIndex == intFinish && e.RowIndex != -1)
             {
                 valueChange = doItem.items[e.RowIndex];
                 if (dataGridView1.Rows[e.RowIndex].Cells[intAlarm].Value != null)
@@ -189,7 +210,6 @@ namespace Notes
                     valueChange._isAlarm = false;
                 }
                 
-                //MessageBox.Show(e.RowIndex + "+事件" + dataGridView1.Rows[e.RowIndex].Cells[2].Value + "+时间" + dataGridView1.Rows[e.RowIndex].Cells[3].Value+"+image");
                 //获取控件的值
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[intFinish];
                 Boolean flag = Convert.ToBoolean(checkCell.Value);
@@ -211,7 +231,7 @@ namespace Notes
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            Boolean flag = false;
+            Boolean flag;
             if (e.RowIndex != -1)
             {
                 //获取控件的值
@@ -224,9 +244,9 @@ namespace Notes
             }
         }
 
-        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e) 
         {
-            Boolean flag = false;
+            Boolean flag;
             if (e.RowIndex != -1)
             {
                 //获取控件的值
@@ -242,12 +262,11 @@ namespace Notes
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == 1 && e.RowIndex < _atCount)
             {
                 if (dataGridView1.Rows[e.RowIndex].Cells[intAlarm].Value == null)
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[intAlarm].Value = imageList1.Images[0];
-                    //Position[] _position = doItem.SearchItem();
                     Item[] _items = doItem.SearchItem();
                     _items[e.RowIndex]._isAlarm = true;
                     doItem.ChangeItem(_items[e.RowIndex], e.RowIndex);
@@ -255,7 +274,6 @@ namespace Notes
                 else
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = null;
-                    //Position[] _position = doItem.SearchItem();
                     Item[] _items = doItem.SearchItem();
                     _items[e.RowIndex]._isAlarm = false;
                     doItem.ChangeItem(_items[e.RowIndex], e.RowIndex);
@@ -264,7 +282,7 @@ namespace Notes
 
             
         }
-
+        //全选
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
@@ -285,16 +303,13 @@ namespace Notes
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.Visible == false)
+            if(this.Visible)
             {
-                this.WindowState = FormWindowState.Normal;
-                this.Visible = true;
-                this.Activate();
+                this.Hide();
             }
             else
             {
-                this.WindowState = FormWindowState.Minimized;
-                this.Visible = false;
+                this.Show();
             }
         }
 
@@ -331,11 +346,39 @@ namespace Notes
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Item valueChange = new Item();
-            //intCount = doItem.intCounts;
-            valueChange._detail = dataGridView1.Rows[e.RowIndex].Cells[intDetail].Value.ToString();
-            valueChange._endTime = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[intEndTime].Value);
+            Item[] _items = doItem.SearchItem();
+            Item valueChange = _items[e.RowIndex];
+            try
+            {
+                valueChange._detail = dataGridView1.Rows[e.RowIndex].Cells[intDetail].Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("事项栏不能为空！！！");
+            }
+            try
+            {
+                valueChange._endTime = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[intEndTime].Value);
+            }
+            catch
+            {
+                MessageBox.Show("请按xxxx/xx/xx x:xx:xx的格式正确输入时间！！！");
+            }
             doItem.ChangeItem(valueChange, valueChange._id);
+        }
+
+        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            DataGridView grid = sender as DataGridView;
+            if (grid != null)
+            {
+                grid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
