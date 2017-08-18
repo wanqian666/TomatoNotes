@@ -41,33 +41,8 @@ namespace Notes
 
         public Item[] SearchItem()
         {
-            //int num = 0, num2 = 0;
             items = itemFile.GetXml();
-            //for (int i = 0; i < items.Length; i++)
-            //{
-            //    if (!items[i]._isFinish)
-            //    {
-            //        num++;
-            //    }
-            //}
-            //items_show = new Item[num];
-            //intCounts = new int[num];
-            //for (int j = 0; j < num; j++)
-            //{
-            //    for (int i = num2; i < items.Length; i++)
-            //    {
-            //        if (!items[i]._isFinish)
-            //        {
-            //            items_show[j] = items[i];
 
-            //            //positions[j]._position = num2;
-            //            //positions[j]._item = new1;
-            //            intCounts[j] = num2;
-            //            num2 = i+1;    
-            //            break;
-            //        }
-            //    }
-            //}
             if (items == null)
             {
                 items[0]._isAlarm = false;
