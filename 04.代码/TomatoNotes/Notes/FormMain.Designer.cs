@@ -31,7 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Alarm = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Finish = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.AddAlarm = new System.Windows.Forms.DataGridViewImageColumn();
+            this.AddDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -40,16 +50,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Alarm = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Finish = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddAlarm = new System.Windows.Forms.DataGridViewImageColumn();
-            this.AddDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xinjian = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -82,6 +82,42 @@
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
+            // Num
+            // 
+            this.Num.HeaderText = "No.";
+            this.Num.Name = "Num";
+            this.Num.ReadOnly = true;
+            this.Num.Width = 30;
+            // 
+            // Alarm
+            // 
+            this.Alarm.HeaderText = "";
+            this.Alarm.Name = "Alarm";
+            this.Alarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Alarm.Width = 50;
+            // 
+            // Detail
+            // 
+            this.Detail.HeaderText = "事项";
+            this.Detail.Name = "Detail";
+            this.Detail.Width = 180;
+            // 
+            // EndTime
+            // 
+            this.EndTime.HeaderText = "预定";
+            this.EndTime.Name = "EndTime";
+            // 
+            // Finish
+            // 
+            this.Finish.HeaderText = "";
+            this.Finish.Name = "Finish";
+            this.Finish.Width = 50;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            // 
             // dataGridView2
             // 
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -103,10 +139,38 @@
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
+            // AddAlarm
+            // 
+            this.AddAlarm.HeaderText = "Column1";
+            this.AddAlarm.Name = "AddAlarm";
+            this.AddAlarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.AddAlarm.Width = 50;
+            // 
+            // AddDetail
+            // 
+            this.AddDetail.HeaderText = "Column2";
+            this.AddDetail.Name = "AddDetail";
+            this.AddDetail.Width = 180;
+            // 
+            // AddTime
+            // 
+            this.AddTime.HeaderText = "Column3";
+            this.AddTime.Name = "AddTime";
+            // 
+            // xinjian
+            // 
+            this.xinjian.HeaderText = "Column4";
+            this.xinjian.Name = "xinjian";
+            this.xinjian.ReadOnly = true;
+            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.xinjian.Width = 80;
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
+            this.timer1.Interval = 600;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // dateTimePicker1
@@ -159,70 +223,6 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
-            // 
-            // Num
-            // 
-            this.Num.HeaderText = "No.";
-            this.Num.Name = "Num";
-            this.Num.ReadOnly = true;
-            this.Num.Width = 30;
-            // 
-            // Alarm
-            // 
-            this.Alarm.HeaderText = "";
-            this.Alarm.Name = "Alarm";
-            this.Alarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Alarm.Width = 50;
-            // 
-            // Detail
-            // 
-            this.Detail.HeaderText = "事项";
-            this.Detail.Name = "Detail";
-            this.Detail.Width = 180;
-            // 
-            // EndTime
-            // 
-            this.EndTime.HeaderText = "预定";
-            this.EndTime.Name = "EndTime";
-            // 
-            // Finish
-            // 
-            this.Finish.HeaderText = "";
-            this.Finish.Name = "Finish";
-            this.Finish.Width = 50;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            // 
-            // AddAlarm
-            // 
-            this.AddAlarm.HeaderText = "Column1";
-            this.AddAlarm.Name = "AddAlarm";
-            this.AddAlarm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AddAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.AddAlarm.Width = 50;
-            // 
-            // AddDetail
-            // 
-            this.AddDetail.HeaderText = "Column2";
-            this.AddDetail.Name = "AddDetail";
-            this.AddDetail.Width = 180;
-            // 
-            // AddTime
-            // 
-            this.AddTime.HeaderText = "Column3";
-            this.AddTime.Name = "AddTime";
-            // 
-            // xinjian
-            // 
-            this.xinjian.HeaderText = "Column4";
-            this.xinjian.Name = "xinjian";
-            this.xinjian.ReadOnly = true;
-            this.xinjian.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.xinjian.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.xinjian.Width = 80;
             // 
             // FormMain
             // 

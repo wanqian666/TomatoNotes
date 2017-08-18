@@ -96,7 +96,7 @@ namespace Notes
                         dataGridView1.Rows[index].Cells[intEndTime].Value = _items[i]._endTime;
                         dataGridView1.Rows[index].Cells[intFinish].Value = _items[i]._isFinish;
                         dataGridView1.Rows[index].Cells[intid].Value = _items[i]._id;
-                        if (_items[index]._isAlarm == true)
+                        if (_items[i]._isAlarm == true)
                         {
                             dataGridView1.Rows[index].Cells[intAlarm].Value = imageList1.Images[0];
                         }
