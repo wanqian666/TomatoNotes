@@ -16,8 +16,9 @@ namespace Notes
         ToDoItemOperation doItem = new ToDoItemOperation();
         Item item = new Item();
         public int _atCount;
-        public int intNum, intAlarm, intEndTime, intDetail, intFinish;
+        public int intNum, intAlarm, intEndTime, intDetail, intFinish, intid;
         public int intAddAlarm, intAddDetail, intAddTime;
+        public int index;
         public FormMain()
         {
             InitializeComponent();
@@ -40,6 +41,9 @@ namespace Notes
                         break;
                     case "Finish":
                         intFinish = i;
+                        break;
+                    case "id":
+                        intid = i;
                         break;
                 }
             }
@@ -64,7 +68,7 @@ namespace Notes
             //获取当前工作区宽度和高度（工作区不包含状态栏）
             int ScreenWidth = Screen.PrimaryScreen.WorkingArea.Width;
             int ScreenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-            this.Width = 520;
+            this.Width = 410;
             this.Height = 249;
             //计算窗体显示的坐标值，可以根据需要微调几个像素
             int x = ScreenWidth - this.Width - 5;
@@ -78,28 +82,36 @@ namespace Notes
             Item[] _items = doItem.SearchItem();
             _atCount = _items.Length;
             int j = 0;
-            for (int index = 0; index < _atCount; index++)
+            
+            for (index = 0; index < _atCount; index++)
             {
                 dataGridView1.Rows.Add();
                
                 for (int i = j; i < _atCount; i++)
                 {
-                    if (_items[index]._isAlarm == true)
-                    {
-                        dataGridView1.Rows[index].Cells[intAlarm].Value = imageList1.Images[0];
-                    }
-                    else
-                    {
-                        dataGridView1.Rows[index].Cells[intAlarm].Value = null;
-                    }
+                    
                     if (!_items[i]._isFinish)
                     {
                         dataGridView1.Rows[index].Cells[intDetail].Value = _items[i]._detail;
                         dataGridView1.Rows[index].Cells[intEndTime].Value = _items[i]._endTime;
                         dataGridView1.Rows[index].Cells[intFinish].Value = _items[i]._isFinish;
+                        dataGridView1.Rows[index].Cells[intid].Value = _items[i]._id;
+                        if (_items[index]._isAlarm == true)
+                        {
+                            dataGridView1.Rows[index].Cells[intAlarm].Value = imageList1.Images[0];
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[index].Cells[intAlarm].Value = null;
+                        }
+                        j++;
                         break;
                     }
                     j++;
+                }
+                if(j == _atCount)
+                {
+                    break;
                 }
             }
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd HH:mm:ss";
@@ -126,13 +138,20 @@ namespace Notes
                  {
                      item._isAlarm = true;
                  }
-                    item._detail = dataGridView2.Rows[0].Cells[intAddDetail].Value.ToString();
-                    item._endTime = dateTimePicker1.Value;
-                    item._isFinish = false;
-                    item._id = _atCount;
-                    doItem.AddItem(item);
-                    dataGridView1.Rows.Clear();
-                    this.Form1_Load(sender, e);             
+                 try
+                 {
+                     item._detail = dataGridView2.Rows[0].Cells[intAddDetail].Value.ToString();
+                     item._endTime = dateTimePicker1.Value;
+                     item._isFinish = false;
+                     item._id = _atCount;
+                     doItem.AddItem(item);
+                     dataGridView1.Rows.Clear();
+                     this.Form1_Load(sender, e);
+                 }
+                 catch
+                 {
+                     MessageBox.Show("事项栏不能为空！！！");
+                 }
               }
         }
 
@@ -200,7 +219,7 @@ namespace Notes
             Item valueChange = new Item();
             if (e.ColumnIndex == intFinish && e.RowIndex != -1)
             {
-                valueChange = doItem.items[e.RowIndex];
+                valueChange = doItem.items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)];
                 if (dataGridView1.Rows[e.RowIndex].Cells[intAlarm].Value != null)
                 {
                     valueChange._isAlarm = true;
@@ -237,7 +256,11 @@ namespace Notes
                 //获取控件的值
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[intFinish];
                 flag = Convert.ToBoolean(checkCell.Value);
-                if (e.RowIndex >= 0 && flag != true && dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor == Color.White)
+                if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor == Color.White)
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 193);
+                }
+                if (e.RowIndex > index)
                 {
                     dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 193);
                 }
@@ -253,7 +276,7 @@ namespace Notes
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[intFinish];
                 flag = Convert.ToBoolean(checkCell.Value);
 
-                if (e.RowIndex >= 0 && flag != true && dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor == Color.FromArgb(255, 255, 193))
+                if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor == Color.FromArgb(255, 255, 193))
                 {
                     dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                 }
@@ -268,15 +291,15 @@ namespace Notes
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[intAlarm].Value = imageList1.Images[0];
                     Item[] _items = doItem.SearchItem();
-                    _items[e.RowIndex]._isAlarm = true;
-                    doItem.ChangeItem(_items[e.RowIndex], e.RowIndex);
+                    _items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)]._isAlarm = true;
+                    doItem.ChangeItem(_items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)], Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value));
                 }
                 else
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = null;
                     Item[] _items = doItem.SearchItem();
-                    _items[e.RowIndex]._isAlarm = false;
-                    doItem.ChangeItem(_items[e.RowIndex], e.RowIndex);
+                    _items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)]._isAlarm = false;
+                    doItem.ChangeItem(_items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)], Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value));
                 }
             }
 
@@ -347,7 +370,7 @@ namespace Notes
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Item[] _items = doItem.SearchItem();
-            Item valueChange = _items[e.RowIndex];
+            Item valueChange = _items[Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[intid].Value)];
             try
             {
                 valueChange._detail = dataGridView1.Rows[e.RowIndex].Cells[intDetail].Value.ToString();
